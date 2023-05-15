@@ -1,8 +1,8 @@
 <?php
 
-require_once "../PROJETOFACULDADE/conexao.php";
-require_once "../PROJETOFACULDADE/tarefa_service.php";
-require_once "../PROJETOFACULDADE/tarefa_model.php";
+require_once "conexao.php";
+require_once "tarefa_service.php";
+require_once "tarefa_model.php";
 
 
 echo '<pre>';
@@ -51,7 +51,6 @@ if($acao == "cadastrar"){
     $tarefaService-> novaTarefa();
 
 }else if($acao == 'listar'){
-    echo 'entrou aqui';
     if(!isset($_SESSION)){
         session_start();
     }

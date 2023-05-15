@@ -1,19 +1,13 @@
 <?php
 
+  $acao = 'listar';
   require "../../PROJETOFACULDADE/tarefa_controller.php";
 
-  $acao = 'listar';
+  echo '<pre>';
+    print_r($tarefas);
+  echo '<pre>';
 
-  if($acao == 'listar'){
-    echo 'entrou aqui';
-    if(!isset($_SESSION)){
-        session_start();
-    }
-    $tarefa = new Tarefa();
-    $conexao = new Conexao();
-    $tarefaService = new TarefaService($conexao, $tarefa);
-    $tarefas = $tarefaService-> recuperar();
-  }  
+  
 ?>
 
 
@@ -26,6 +20,13 @@
   <title>Document</title>
 </head>
 <body>
+
+    <?php foreach($tarefas as $indice => $tarefa) { ?>
+            <tr>
+                <td><?php echo $tarefa -> tarefa ?></td>
+                <td><?php echo $tarefa -> sts ?></td>
+            </tr>
+    <?php }?>
   
 </body>
 </html>

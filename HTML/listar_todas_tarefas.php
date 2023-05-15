@@ -4,6 +4,7 @@
 	}
 
   $acao = 'listar';
+  require "../../PROJETOFACULDADE/tarefa_controller.php";
 ?>
 
 
@@ -16,8 +17,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">  
     <title>Task List</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    
     <link rel="stylesheet" href="../CSS/styleListaTarefas.css">
+    
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
      <!--Fontawesome-->
@@ -47,7 +48,7 @@
           <div class="menus">
             <div class="filtros">
               <span class="ativo" id="todas">Pendentes</span>
-              <span id="pendentes"><a href="../HTML/listar_todas_tarefas.php">Todas</a></span>
+              <span id="pendentes"><a href="">Todas</a></span>
               <span id="pendentes"><a href="../HTML/tarefas_completas.php">Completas</a></span>
             </div>
             <button class="add-btn">Adicionar</button>
@@ -58,9 +59,11 @@
       <!--Lista-->
       <div class="container">
         <ul class="caixa-tarefas row">
-          <li>
+        <?php foreach($tarefas as $indice => $tarefa) { ?>
+             
+            <li>
               <div class="col-10 col-sm-10">
-                Comprar ração do cachorro
+              <td style="color:white;"><?php echo $tarefa -> tarefa ?></td>
               </div>
               <button title="Marcar como concluida">
                 <i  class="fas fa-check" style="color: #00f53d;"></i>
@@ -70,25 +73,9 @@
                   <i  class="fas fa-times" style="color: #ff0000;"></i>
                 </button>
               </div>
-          </li>
-          <li>
-              <div class="col-10 col-sm-10">
-                Ir ao mercado comprar arroz
-              </div>
-              <button title="Marcar como concluida">
-                <i  class="fas fa-check" style="color: #00f53d;"></i>
-              </button>
-              <div class="col-1 col-sm-1" >
-                <button title="Remover tarefa">
-                  <i  class="fas fa-times" style="color: #ff0000;"></i>
-                </button>
-              </div>
-          </li>
-        </ul>
-      </div>
-      <div style="color: white">
-        <h5>asdas</h5>
-      </div>
+            </li>
+              
+          <?php }?>
     </div>
 
 

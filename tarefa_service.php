@@ -1,8 +1,5 @@
 <?php 
 
-require_once "../PROJETOFACULDADE/conexao.php";
-require_once "../PROJETOFACULDADE/tarefa_controller.php";
-require_once "../PROJETOFACULDADE/tarefa_model.php";
 
 
 
@@ -92,12 +89,12 @@ class TarefaService{
     }
 
     public function recuperar(){ //read
-        echo 'entrou aqui 2';
         $query = 'select * from `tarefas` where id_usuario = :id_usuario ;';
         $stmt = $this->conexao->prepare($query);
         $stmt -> bindValue(':id_usuario', $_SESSION['id'] );
         $stmt->execute();
         return $stmt -> fetchAll(PDO::FETCH_OBJ);
+       
     }
 
 
