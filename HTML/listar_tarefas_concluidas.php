@@ -3,7 +3,7 @@
     	session_start();
 	}
 
-  $acao = 'recuperarTodas';
+  $acao = 'recuperarCompletas';
   require "../../PROJETOFACULDADE/tarefa_controller.php";
 ?>
 
@@ -56,8 +56,8 @@
           <div class="menus">
             <div class="filtros">
               <span id="pendentes"><a href="../HTML/lista_tarefas.php">Pendentes</a></span>
-              <span><a style="color: white" href="">Todas</a></span>
-              <span id="pendentes"><a href="../HTML/listar_tarefas_concluidas.php">Completas</a></span>
+              <span><a href="../HTML/listar_todas_tarefas.php">Todas</a></span>
+              <span id="pendentes"><a a style="color: white">Completas</a></span>
             </div>
             <button class="add-btn">Adicionar</button>
             <button class="limpar-btn">Limpar tarefas</button>
@@ -70,7 +70,7 @@
         <?php foreach($tarefas as $indice => $tarefa) { ?>
             <li>
               <div class="col-12 col-sm-12 mt-2 mb-2">
-              <td style="color:white;"><?php echo $tarefa -> tarefa ?></td>
+              <td style="color: red;"><?php echo $tarefa -> tarefa ?></td>
               </div>
             </li>
           <?php }?>

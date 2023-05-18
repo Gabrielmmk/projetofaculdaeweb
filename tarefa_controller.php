@@ -5,9 +5,6 @@ require_once "tarefa_service.php";
 require_once "tarefa_model.php";
 
 
-echo '<pre>';
-print_r($_POST);
-echo '<pre>';
 
 $acao = isset($_GET['acao']) ? $_GET['acao'] : $acao;
 
@@ -50,7 +47,7 @@ if($acao == "cadastrar"){
     $tarefaService = new TarefaService($conexao, $tarefa);
     $tarefaService-> novaTarefa();
 
-}else if($acao == 'listar'){
+}else if($acao == 'recuperarPendente'){
     if(!isset($_SESSION)){
         session_start();
     }
@@ -58,6 +55,54 @@ if($acao == "cadastrar"){
     $conexao = new Conexao();
     $tarefaService = new TarefaService($conexao, $tarefa);
     $tarefas = $tarefaService-> recuperar();
+
+}else if($acao == 'remover'){
+    if(!isset($_SESSION)){
+        session_start();
+    }
+    $tarefa = new Tarefa();
+    $tarefa->__set('id', $_GET['id']); 
+
+    $conexao = new Conexao();
+    $tarefaService = new TarefaService($conexao, $tarefa);
+    $tarefaService-> remover();
+
+}else if($acao == 'tarefaConcluida'){
+    if(!isset($_SESSION)){
+            session_start();
+        }
+        $tarefa = new Tarefa();
+        $tarefa->__set('id', $_GET['id']); 
+
+        $conexao = new Conexao();
+        $tarefaService = new TarefaService($conexao, $tarefa);
+        $tarefaService-> tarefaConcluida();
+}else if ($acao == 'atualizar'){
+
+    $tarefa = new Tarefa();
+    $tarefa->__set('id', $_POST['id']); 
+    $tarefa->__set('tarefa', $_POST['tarefa']);
+    $conexao = new Conexao();
+    $tarefaService = new TarefaService($conexao, $tarefa);
+    $tarefaService-> atualizar(); 
+
+}else if($acao == 'recuperarTodas'){
+    if(!isset($_SESSION)){
+        session_start();
+    }
+    $tarefa = new Tarefa();
+    $conexao = new Conexao();
+    $tarefaService = new TarefaService($conexao, $tarefa);
+    $tarefas = $tarefaService-> recuperar2();
+
+}else if($acao == 'recuperarCompletas'){
+    if(!isset($_SESSION)){
+        session_start();
+    }
+    $tarefa = new Tarefa();
+    $conexao = new Conexao();
+    $tarefaService = new TarefaService($conexao, $tarefa);
+    $tarefas = $tarefaService-> recuperar3();
 }
 
 

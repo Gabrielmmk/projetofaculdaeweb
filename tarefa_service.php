@@ -80,20 +80,72 @@ class TarefaService{
             echo $e->getMessage();
         }
     }
-    public function remover(){ //remove
 
+
+    public function remover() {
+        $query = "DELETE FROM tarefas WHERE id = :id";
+        $stmt = $this->conexao->prepare($query);
+        $stmt->bindValue(':id', $this->tarefa->__get('id'));
+        $stmt->execute();
+        header('Location:lista_tarefas.php?removida=1');
     }
+    
 
     public function atualizar(){ //update
+        try {
+            if (empty($_POST['tarefa'])) {
+                header('Location: HTML/lista_tarefas.php?erroAtualizar=1');
+                exit(); // Adicionando exit() para interromper a execução após o redirecionamento
+            } else {
+                $query = 'UPDATE tarefas SET tarefa = :tarefa WHERE id = :id';
+                $stmt = $this->conexao->prepare($query);
+                $stmt->bindValue(':id', $this->tarefa->__get('id'));
+                $stmt->bindValue(':tarefa', $this->tarefa->__get('tarefa'));
+                $stmt->execute();
+                header('Location: HTML/lista_tarefas.php?erroAtualizar=0');
+                exit(); // Adicionando exit() para interromper a execução após o redirecionamento
+            }
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+        
 
     }
 
-    public function recuperar(){ //read
-        $query = 'select * from `tarefas` where id_usuario = :id_usuario ;';
+    public function recuperar(){ //read Listar todas as tarefas pendentes
+        $query = 'SELECT * FROM `tarefas` WHERE id_usuario = :id_usuario AND sts = "Pendente"';
         $stmt = $this->conexao->prepare($query);
         $stmt -> bindValue(':id_usuario', $_SESSION['id'] );
         $stmt->execute();
         return $stmt -> fetchAll(PDO::FETCH_OBJ);
+       
+    }
+
+    public function recuperar2(){ //read Listar todas as tarefas
+        $query = 'SELECT * FROM `tarefas` WHERE id_usuario = :id_usuario';
+        $stmt = $this->conexao->prepare($query);
+        $stmt -> bindValue(':id_usuario', $_SESSION['id'] );
+        $stmt->execute();
+        return $stmt -> fetchAll(PDO::FETCH_OBJ);
+       
+    }
+
+    public function recuperar3(){ //read Listar todas as tarefas
+        $query = "SELECT * FROM `tarefas` WHERE id_usuario = :id_usuario and sts = 'Concluido' ";
+        $stmt = $this->conexao->prepare($query);
+        $stmt -> bindValue(':id_usuario', $_SESSION['id'] );
+        $stmt->execute();
+        return $stmt -> fetchAll(PDO::FETCH_OBJ);
+       
+    }
+
+    public function tarefaConcluida(){ //Marcar tarefa como concluida
+        $query = "UPDATE tarefas SET sts = 'Concluido' WHERE id = :id";
+        $stmt = $this->conexao->prepare($query);
+        $stmt->bindValue(':id', $this->tarefa->__get('id'));
+        $stmt->execute();
+        header('Location:lista_tarefas.php?concluida=1');
+        
        
     }
 

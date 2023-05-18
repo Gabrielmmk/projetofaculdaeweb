@@ -10,9 +10,12 @@
 body{
   width: 100%;
   height: 100vh;
-  overflow: hidden;
   background: linear-gradient(180deg, #1D005B 20.31%, rgba(0, 229, 243, 0.5) 100%);
 
+}
+
+body a{
+  text-decoration: none;
 }
 
 h1{
@@ -278,14 +281,14 @@ li{
 
 
 /*Lista de tarefas estilo*/
-.caixa-tarefas button{
+.caixa-tarefas .btnIcone{
   all: unset;
   cursor: pointer;
   font-size: 22px;
   margin-left: 15px;
 }
 
-.caixa-tarefas button:hover::before{
+.caixa-tarefas .btnIcone:hover::before{
   content: attr(title);
   position: absolute;
   background-color: #333;
@@ -305,4 +308,10 @@ li{
   color: green;
   text-align: center;
   font-size: 1em;
+}
+
+
+
+.filtros .ativo{
+  color: red;
 }
