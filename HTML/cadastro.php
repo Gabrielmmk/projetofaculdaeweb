@@ -25,6 +25,9 @@
 					<h1 class="titulo" >TaskList</h1>
 				</div>
 
+				<?php if( isset( $_GET['erro'] ) && $_GET['erro'] == 0 ) { ?>
+					<p class="tarefaValida">Cadastrado com sucesso!.</p>
+				<?php }?>
 			<!-- formulário -->
 			<form method="post" action="../tarefa_controller.php?acao=cadastrar"> 
 
@@ -32,7 +35,6 @@
 						<input required class="input" type="text" name="nome" id="name">
 						<label for="name">Nome completo</label>
 					</div>
-
 					<div class="single-input">
 						<input required class="input" type="text" name="nomeUsuario" id="name">
 						<label for="name">Nome do usuário</label>

@@ -6,8 +6,6 @@
   $acao = 'recuperarPendente';
   require "../../PROJETOFACULDADE/tarefa_controller.php";
 
-
-  
 ?>
 
 

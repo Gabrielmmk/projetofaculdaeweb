@@ -14,10 +14,10 @@ class TarefaService{
     }
 
     public function login(){
-        $host = 'localhost';
-        $dbname = 'usuario';
-        $user = 'root';
-        $pass = '';
+        $host = 'sql303.epizy.com';
+        $dbname = 'epiz_34236332_projetoFaculdade';
+        $user = 'epiz_34236332';
+        $pass = 'J74Il8SzxnlBnO8';
     
         // Cria a conexão com o banco de dados
         $mysqli = new mysqli($host, $user, $pass, $dbname);
@@ -60,6 +60,7 @@ class TarefaService{
         $stmt -> bindValue(':senha', $this -> tarefa->__get('senha'));
         $stmt -> bindValue(':nomeUsuario', $this -> tarefa->__get('nomeUsuario'));
         $stmt->execute();
+        header ('Location: HTML/index.php?erro=0');
     }
 
     public function novaTarefa() {
